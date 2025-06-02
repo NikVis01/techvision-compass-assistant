@@ -27,7 +27,7 @@ const ChatInterface = ({ onSubmit, isLoading }: ChatInterfaceProps) => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="What's on your mind?"
-            className="w-full p-6 pr-16 bg-white/80 backdrop-blur-md rounded-3xl border-0 focus:outline-none focus:ring-2 focus:ring-purple-400/50 resize-none text-gray-800 placeholder-gray-400 shadow-xl"
+            className="w-full p-6 pr-16 bg-white/20 backdrop-blur-md rounded-3xl border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none text-white placeholder-white/60 shadow-xl"
             rows={3}
             disabled={isLoading}
           />
@@ -35,12 +35,12 @@ const ChatInterface = ({ onSubmit, isLoading }: ChatInterfaceProps) => {
           <Button
             type="submit"
             disabled={!prompt.trim() || isLoading}
-            className="absolute bottom-4 right-4 w-12 h-12 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg"
+            className="absolute bottom-4 right-4 w-12 h-12 rounded-2xl bg-white/20 hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg backdrop-blur-sm border border-white/30"
           >
             {isLoading ? (
-              <Sparkles className="w-5 h-5 animate-spin" />
+              <Sparkles className="w-5 h-5 animate-spin text-white" />
             ) : (
-              <Send className="w-5 h-5" />
+              <Send className="w-5 h-5 text-white" />
             )}
           </Button>
         </div>
