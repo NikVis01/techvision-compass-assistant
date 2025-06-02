@@ -74,7 +74,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
-      background: 'radial-gradient(circle at center, rgba(251, 146, 60, 0.3) 0%, rgba(0, 0, 0, 0.8) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
+      background: 'radial-gradient(circle at center bottom, rgba(251, 146, 60, 0.3) 0%, rgba(0, 0, 0, 0.8) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
     }}>
       {/* Dynamic floating elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -95,7 +95,7 @@ const Index = () => {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 pt-12 pb-8">
+      <div className="relative z-10 pt-32 pb-16">
         <div className="text-center">
           <h1 className="text-6xl font-light text-white mb-2 tracking-tight" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
             <span className="font-black text-7xl">INTERACTIF</span>
@@ -107,16 +107,30 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 px-6">
+      <div className="relative z-10 px-6 pb-32">
         <ChatInterface onSubmit={handlePromptSubmit} isLoading={isLoading} />
       </div>
 
-      {/* Powered by Gemini */}
+      {/* Powered by Gemini with real logo */}
       <div className="fixed bottom-6 right-6 z-20">
         <div className="flex items-center space-x-3 bg-black/20 backdrop-blur-md rounded-full px-4 py-2 border border-white/10">
-          <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-sm font-bold" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>G</span>
-          </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gemini-gradient)" />
+            <path d="M12 8L12.5 10.5L15 11L12.5 11.5L12 14L11.5 11.5L9 11L11.5 10.5L12 8Z" fill="url(#gemini-gradient-inner)" />
+            <defs>
+              <linearGradient id="gemini-gradient" x1="4" y1="2" x2="20" y2="16" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#4285F4" />
+                <stop offset="0.25" stopColor="#9C27B0" />
+                <stop offset="0.5" stopColor="#E91E63" />
+                <stop offset="0.75" stopColor="#FF9800" />
+                <stop offset="1" stopColor="#FFEB3B" />
+              </linearGradient>
+              <linearGradient id="gemini-gradient-inner" x1="9" y1="8" x2="15" y2="14" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FFFFFF" stopOpacity="0.8" />
+                <stop offset="1" stopColor="#FFFFFF" stopOpacity="0.4" />
+              </linearGradient>
+            </defs>
+          </svg>
           <span className="text-white/90 text-sm font-medium" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>powered by Gemini</span>
         </div>
       </div>
