@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import ChatInterface from '@/components/ChatInterface';
@@ -76,37 +75,26 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden" style={{
       background: `
         radial-gradient(ellipse 120% 80% at center bottom, 
-          rgba(251, 146, 60, 0.8) 0%, 
-          rgba(251, 146, 60, 0.6) 15%,
-          rgba(34, 197, 94, 0.4) 35%,
-          rgba(34, 197, 94, 0.2) 55%,
-          rgba(0, 0, 0, 0.9) 80%
-        ),
-        conic-gradient(from 0deg at center bottom,
-          #000000 0deg,
-          #22c55e 45deg,
-          #f97316 90deg,
-          #22c55e 135deg,
-          #000000 180deg,
-          #22c55e 225deg,
-          #f97316 270deg,
-          #22c55e 315deg,
-          #000000 360deg
+          rgba(255, 218, 185, 0.9) 0%, 
+          rgba(255, 180, 120, 0.8) 25%,
+          rgba(255, 160, 100, 0.7) 50%,
+          rgba(255, 140, 80, 0.6) 75%,
+          rgba(139, 69, 19, 0.9) 100%
         )
       `
     }}>
       {/* Dynamic floating elements with more organic movement */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-16 w-4 h-4 bg-white/30 rounded-full animate-pulse" style={{ borderRadius: '60% 40% 70% 30%' }}></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-green-400/40 animate-bounce" style={{ borderRadius: '40% 60% 30% 70%' }}></div>
-        <div className="absolute top-60 left-1/4 w-5 h-5 bg-orange-400/25 animate-pulse delay-1000" style={{ borderRadius: '70% 30% 60% 40%' }}></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-orange-200/40 animate-bounce" style={{ borderRadius: '40% 60% 30% 70%' }}></div>
+        <div className="absolute top-60 left-1/4 w-5 h-5 bg-peach-300/25 animate-pulse delay-1000" style={{ borderRadius: '70% 30% 60% 40%' }}></div>
         <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-white/50 rounded-full animate-bounce delay-500"></div>
-        <div className="absolute top-1/3 right-16 w-4 h-4 bg-green-300/30 animate-pulse delay-2000" style={{ borderRadius: '30% 70% 40% 60%' }}></div>
-        <div className="absolute bottom-60 left-20 w-3 h-3 bg-orange-300/35 animate-bounce delay-1500" style={{ borderRadius: '50% 50% 80% 20%' }}></div>
+        <div className="absolute top-1/3 right-16 w-4 h-4 bg-orange-300/30 animate-pulse delay-2000" style={{ borderRadius: '30% 70% 40% 60%' }}></div>
+        <div className="absolute bottom-60 left-20 w-3 h-3 bg-peach-200/35 animate-bounce delay-1500" style={{ borderRadius: '50% 50% 80% 20%' }}></div>
         
         {/* Sketchy floating lines */}
         <div className="absolute top-32 left-1/3 w-20 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" style={{ transform: 'rotate(2deg)' }}></div>
-        <div className="absolute bottom-32 right-1/4 w-16 h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent animate-pulse delay-1000" style={{ transform: 'rotate(-1deg)' }}></div>
+        <div className="absolute bottom-32 right-1/4 w-16 h-px bg-gradient-to-r from-transparent via-orange-200/40 to-transparent animate-pulse delay-1000" style={{ transform: 'rotate(-1deg)' }}></div>
         
         {/* Sketchy geometric shapes */}
         <div className="absolute top-1/4 left-12 w-8 h-8 border-2 border-white/15 animate-spin" style={{ 
@@ -114,7 +102,7 @@ const Index = () => {
           animationDuration: '25s',
           transform: 'rotate(45deg)'
         }}></div>
-        <div className="absolute bottom-1/4 right-12 w-6 h-6 border-2 border-green-400/25 animate-spin" style={{ 
+        <div className="absolute bottom-1/4 right-12 w-6 h-6 border-2 border-orange-200/25 animate-spin" style={{ 
           borderRadius: '60% 40% 40% 60%',
           animationDuration: '20s',
           transform: 'rotate(12deg)'
