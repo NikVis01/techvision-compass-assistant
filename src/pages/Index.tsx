@@ -75,50 +75,54 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
       background: `
-        radial-gradient(circle at center bottom, 
-          rgba(251, 146, 60, 0.4) 0%, 
-          rgba(34, 197, 94, 0.3) 20%,
-          rgba(236, 72, 153, 0.2) 40%,
-          rgba(0, 0, 0, 0.9) 70%
+        radial-gradient(ellipse 120% 80% at center bottom, 
+          rgba(251, 146, 60, 0.8) 0%, 
+          rgba(251, 146, 60, 0.6) 15%,
+          rgba(34, 197, 94, 0.4) 35%,
+          rgba(34, 197, 94, 0.2) 55%,
+          rgba(0, 0, 0, 0.9) 80%
         ),
         conic-gradient(from 0deg at center bottom,
           #000000 0deg,
-          #22c55e 30deg,
-          #f97316 60deg,
-          #ec4899 90deg,
-          #22c55e 120deg,
-          #000000 150deg,
-          #f97316 180deg,
-          #ec4899 210deg,
-          #22c55e 240deg,
+          #22c55e 45deg,
+          #f97316 90deg,
+          #22c55e 135deg,
+          #000000 180deg,
+          #22c55e 225deg,
           #f97316 270deg,
-          #ec4899 300deg,
-          #000000 330deg,
+          #22c55e 315deg,
           #000000 360deg
-        ),
-        linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)
+        )
       `
     }}>
-      {/* Dynamic floating elements */}
+      {/* Dynamic floating elements with more organic movement */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-16 w-3 h-3 bg-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-2 h-2 bg-green-400/30 rounded-full animate-bounce"></div>
-        <div className="absolute top-60 left-1/4 w-4 h-4 bg-pink-400/20 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-40 right-1/3 w-1 h-1 bg-white/40 rounded-full animate-bounce delay-500"></div>
-        <div className="absolute top-1/3 right-16 w-3 h-3 bg-green-300/20 rounded-full animate-pulse delay-2000"></div>
-        <div className="absolute bottom-60 left-20 w-2 h-2 bg-pink-300/30 rounded-full animate-bounce delay-1500"></div>
+        <div className="absolute top-20 left-16 w-4 h-4 bg-white/30 rounded-full animate-pulse" style={{ borderRadius: '60% 40% 70% 30%' }}></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-green-400/40 animate-bounce" style={{ borderRadius: '40% 60% 30% 70%' }}></div>
+        <div className="absolute top-60 left-1/4 w-5 h-5 bg-orange-400/25 animate-pulse delay-1000" style={{ borderRadius: '70% 30% 60% 40%' }}></div>
+        <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-white/50 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute top-1/3 right-16 w-4 h-4 bg-green-300/30 animate-pulse delay-2000" style={{ borderRadius: '30% 70% 40% 60%' }}></div>
+        <div className="absolute bottom-60 left-20 w-3 h-3 bg-orange-300/35 animate-bounce delay-1500" style={{ borderRadius: '50% 50% 80% 20%' }}></div>
         
-        {/* Floating lines */}
-        <div className="absolute top-32 left-1/3 w-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-32 right-1/4 w-12 h-px bg-gradient-to-r from-transparent via-green-400/30 to-transparent animate-pulse delay-1000"></div>
+        {/* Sketchy floating lines */}
+        <div className="absolute top-32 left-1/3 w-20 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" style={{ transform: 'rotate(2deg)' }}></div>
+        <div className="absolute bottom-32 right-1/4 w-16 h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent animate-pulse delay-1000" style={{ transform: 'rotate(-1deg)' }}></div>
         
-        {/* Floating geometric shapes */}
-        <div className="absolute top-1/4 left-12 w-6 h-6 border border-white/10 rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
-        <div className="absolute bottom-1/4 right-12 w-4 h-4 border border-green-400/20 rotate-12 animate-spin" style={{ animationDuration: '15s' }}></div>
+        {/* Sketchy geometric shapes */}
+        <div className="absolute top-1/4 left-12 w-8 h-8 border-2 border-white/15 animate-spin" style={{ 
+          borderRadius: '30% 70% 70% 30%',
+          animationDuration: '25s',
+          transform: 'rotate(45deg)'
+        }}></div>
+        <div className="absolute bottom-1/4 right-12 w-6 h-6 border-2 border-green-400/25 animate-spin" style={{ 
+          borderRadius: '60% 40% 40% 60%',
+          animationDuration: '20s',
+          transform: 'rotate(12deg)'
+        }}></div>
       </div>
 
       {/* Header */}
-      <div className="relative z-10 pt-32 pb-16">
+      <div className="relative z-10 pt-40 pb-20">
         <div className="text-center">
           <h1 className="text-6xl font-light text-white mb-2 tracking-tight" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
             <span className="font-black text-7xl">INTERACTIF</span>
@@ -130,7 +134,7 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 px-6 pb-32">
+      <div className="relative z-10 px-6 pb-40">
         <ChatInterface onSubmit={handlePromptSubmit} isLoading={isLoading} />
       </div>
 

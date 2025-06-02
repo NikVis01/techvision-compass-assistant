@@ -1,4 +1,3 @@
-
 import { ArrowLeft, Clock, CheckCircle2, Lightbulb } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StructuredResponse } from '@/types/api';
@@ -18,36 +17,32 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
       background: `
-        radial-gradient(circle at center, 
-          rgba(251, 146, 60, 0.3) 0%, 
-          rgba(34, 197, 94, 0.2) 20%,
-          rgba(236, 72, 153, 0.2) 40%,
-          rgba(0, 0, 0, 0.9) 70%
+        radial-gradient(ellipse 120% 80% at center, 
+          rgba(251, 146, 60, 0.6) 0%, 
+          rgba(251, 146, 60, 0.4) 15%,
+          rgba(34, 197, 94, 0.3) 35%,
+          rgba(34, 197, 94, 0.2) 55%,
+          rgba(0, 0, 0, 0.9) 80%
         ),
         conic-gradient(from 0deg at center,
           #000000 0deg,
-          #22c55e 30deg,
-          #f97316 60deg,
-          #ec4899 90deg,
-          #22c55e 120deg,
-          #000000 150deg,
-          #f97316 180deg,
-          #ec4899 210deg,
-          #22c55e 240deg,
+          #22c55e 45deg,
+          #f97316 90deg,
+          #22c55e 135deg,
+          #000000 180deg,
+          #22c55e 225deg,
           #f97316 270deg,
-          #ec4899 300deg,
-          #000000 330deg,
+          #22c55e 315deg,
           #000000 360deg
-        ),
-        linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)
+        )
       `
     }}>
-      {/* Dynamic floating elements */}
+      {/* Dynamic floating elements with sketchy feel */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-16 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-green-400/30 rounded-full animate-bounce"></div>
-        <div className="absolute top-60 left-1/4 w-1 h-1 bg-pink-400/20 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-white/40 rounded-full animate-bounce delay-500"></div>
+        <div className="absolute top-20 left-16 w-3 h-3 bg-white/25 animate-pulse" style={{ borderRadius: '60% 40% 70% 30%' }}></div>
+        <div className="absolute top-40 right-20 w-4 h-4 bg-green-400/35 animate-bounce" style={{ borderRadius: '40% 60% 30% 70%' }}></div>
+        <div className="absolute top-60 left-1/4 w-2 h-2 bg-orange-400/20 animate-pulse delay-1000" style={{ borderRadius: '70% 30% 60% 40%' }}></div>
+        <div className="absolute bottom-40 right-1/3 w-3 h-3 bg-white/40 animate-bounce delay-500" style={{ borderRadius: '30% 70% 40% 60%' }}></div>
       </div>
 
       {/* Header */}
