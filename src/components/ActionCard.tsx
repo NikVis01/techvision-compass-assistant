@@ -46,12 +46,12 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
   return (
     <>
       <div 
-        className={`backdrop-blur-md rounded-xl p-6 border transition-all duration-500 group cursor-pointer relative overflow-hidden ${
+        className={`rounded-xl p-6 border-0 shadow-2xl transition-all duration-500 group cursor-pointer relative overflow-hidden ${
           isCompleted 
-            ? 'bg-gray-300/20 border-gray-400/30 opacity-60' 
+            ? 'bg-gray-200 opacity-60' 
             : isHovered 
-              ? 'bg-white/25 border-orange-400/50 shadow-2xl scale-105' 
-              : 'bg-white/10 border-white/20 hover:bg-white/15'
+              ? 'bg-white scale-105 shadow-2xl' 
+              : 'bg-white hover:shadow-xl'
         }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -97,7 +97,7 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
               className={`p-2 rounded-full transition-all duration-200 ${
                 isHovered && !isCompleted
                   ? 'bg-orange-500 text-white shadow-lg scale-110' 
-                  : 'bg-white/20 text-white hover:bg-white/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
               title="Edit action point"
               disabled={isCompleted}
@@ -112,7 +112,7 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
                   ? 'bg-green-500 text-white'
                   : isHovered 
                     ? 'bg-green-500 text-white shadow-lg scale-110' 
-                    : 'bg-white/20 text-white hover:bg-green-400'
+                    : 'bg-gray-100 text-gray-600 hover:bg-green-400 hover:text-white'
               }`}
               title={isCompleted ? "Mark as incomplete" : "Mark as complete"}
             >
@@ -125,8 +125,8 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
           isCompleted 
             ? 'text-gray-400 line-through' 
             : isHovered 
-              ? 'text-white' 
-              : 'text-white/90'
+              ? 'text-black' 
+              : 'text-gray-800'
         }`} style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
           {action.task}
         </h3>
@@ -134,7 +134,7 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
         <div className="space-y-3">
           {action.due_date && (
             <div className={`flex items-center space-x-2 transition-colors duration-200 ${
-              isCompleted ? 'text-gray-500' : 'text-white/70'
+              isCompleted ? 'text-gray-400' : 'text-gray-600'
             }`}>
               <Calendar className="w-4 h-4" />
               <span className="text-sm font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Due: {action.due_date}</span>
@@ -143,7 +143,7 @@ const ActionCard = ({ action, index, isCompleted, onToggleComplete, onEdit, onRe
 
           {action.context && (
             <div className={`flex items-start space-x-2 transition-colors duration-200 ${
-              isCompleted ? 'text-gray-500' : 'text-white/70'
+              isCompleted ? 'text-gray-400' : 'text-gray-600'
             }`}>
               <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
               <span className="text-sm font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{action.context}</span>

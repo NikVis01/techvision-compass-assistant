@@ -66,11 +66,14 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
     <div className="min-h-screen relative overflow-hidden" style={{
       background: 'radial-gradient(circle at center, rgba(251, 146, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
     }}>
+      {/* Subtle light green glow overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/5 via-transparent to-green-300/5 pointer-events-none"></div>
+      
       {/* Dynamic floating elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-16 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-orange-400/30 rounded-full animate-bounce"></div>
-        <div className="absolute top-60 left-1/4 w-1 h-1 bg-pink-400/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-emerald-400/30 rounded-full animate-bounce"></div>
+        <div className="absolute top-60 left-1/4 w-1 h-1 bg-green-400/20 rounded-full animate-pulse delay-1000"></div>
         <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-white/40 rounded-full animate-bounce delay-500"></div>
       </div>
 
@@ -110,19 +113,19 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
         {/* Enhanced Summary Stats */}
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-2xl p-6 border-0 shadow-2xl hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/70 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Action Points</p>
-                <p className="text-4xl font-black text-white mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalActions}</p>
+                <p className="text-gray-600 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Action Points</p>
+                <p className="text-4xl font-black text-black mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalActions}</p>
                 <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-white/20 rounded-full overflow-hidden">
+                  <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-orange-400 to-pink-400 transition-all duration-500"
                       style={{ width: `${totalActions > 0 ? (completedCount / totalActions) * 100 : 0}%` }}
                     />
                   </div>
-                  <span className="text-sm text-white/70" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
+                  <span className="text-sm text-gray-600" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
                     {completedCount}/{totalActions} completed
                   </span>
                 </div>
@@ -131,19 +134,19 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
             </div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+          <div className="bg-white rounded-2xl p-6 border-0 shadow-2xl hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/70 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Considerations</p>
-                <p className="text-4xl font-black text-white mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalConsiderations}</p>
+                <p className="text-gray-600 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Considerations</p>
+                <p className="text-4xl font-black text-black mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalConsiderations}</p>
                 <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-white/20 rounded-full overflow-hidden">
+                  <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500"
                       style={{ width: `${totalConsiderations > 0 ? (reflectedCount / totalConsiderations) * 100 : 0}%` }}
                     />
                   </div>
-                  <span className="text-sm text-white/70" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
+                  <span className="text-sm text-gray-600" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
                     {reflectedCount}/{totalConsiderations} reflected
                   </span>
                 </div>

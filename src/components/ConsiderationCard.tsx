@@ -33,8 +33,8 @@ const ConsiderationCard = ({ consideration, index, onReflectionSave }: Considera
   return (
     <>
       <div 
-        className={`bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-white/30 transition-all duration-300 group cursor-pointer relative overflow-hidden ${
-          isHovered ? 'bg-white/90 shadow-2xl scale-105 border-emerald-400/50' : 'hover:bg-white/80'
+        className={`bg-white rounded-xl p-6 border-0 shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden ${
+          isHovered ? 'scale-105 shadow-2xl' : 'hover:shadow-xl'
         }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -69,7 +69,7 @@ const ConsiderationCard = ({ consideration, index, onReflectionSave }: Considera
               className={`p-2 rounded-full transition-all duration-200 ${
                 isHovered 
                   ? 'bg-emerald-500 text-white shadow-lg scale-110' 
-                  : 'bg-emerald-100 text-emerald-600 hover:bg-emerald-200'
+                  : 'bg-gray-100 text-emerald-600 hover:bg-emerald-50'
               }`}
               title="Reflect on this consideration"
             >
@@ -84,7 +84,7 @@ const ConsiderationCard = ({ consideration, index, onReflectionSave }: Considera
         </p>
 
         {consideration.related_to_action && (
-          <div className={`flex items-center space-x-2 text-gray-600 bg-gray-50/50 rounded-lg p-3 transition-all duration-200 ${isHovered ? 'bg-gray-100/70' : ''}`}>
+          <div className={`flex items-center space-x-2 text-gray-600 bg-gray-50 rounded-lg p-3 transition-all duration-200 ${isHovered ? 'bg-gray-100' : ''}`}>
             <ArrowRight className="w-4 h-4" />
             <span className="text-sm">
               <span className="font-medium">Related to:</span> {consideration.related_to_action}
@@ -93,7 +93,7 @@ const ConsiderationCard = ({ consideration, index, onReflectionSave }: Considera
         )}
 
         {reflection && (
-          <div className="mt-4 p-3 bg-emerald-50/70 rounded-lg border-l-4 border-emerald-400">
+          <div className="mt-4 p-3 bg-emerald-50 rounded-lg border-l-4 border-emerald-400">
             <div className="flex items-center space-x-2 mb-2">
               <Edit3 className="w-4 h-4 text-emerald-600" />
               <span className="text-sm font-medium text-emerald-700">Your Reflection</span>
