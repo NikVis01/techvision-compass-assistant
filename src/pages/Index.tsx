@@ -1,8 +1,10 @@
 
 import { useState } from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, BarChart3 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
+import AnalysisView from '@/components/AnalysisView';
 import { StructuredResponse } from '@/types/api';
 
 interface ChatSession {
@@ -12,10 +14,83 @@ interface ChatSession {
   timestamp: Date;
 }
 
+interface Mission {
+  id: string;
+  name: string;
+  data: StructuredResponse;
+  timestamp: Date;
+  completedActions: number;
+  totalActions: number;
+  reflections: number;
+  totalConsiderations: number;
+}
+
+// Mock previous missions data
+const mockMissions: Mission[] = [
+  {
+    id: '1',
+    name: 'Team Communication Strategy',
+    data: {
+      action_points: [
+        { task: 'Schedule weekly team standup', priority: 'high' },
+        { task: 'Create shared communication guidelines', priority: 'medium' }
+      ],
+      consider_points: [
+        { note: 'Consider different time zones for remote team members', category: 'people' }
+      ]
+    },
+    timestamp: new Date('2024-05-28'),
+    completedActions: 2,
+    totalActions: 2,
+    reflections: 1,
+    totalConsiderations: 1
+  },
+  {
+    id: '2',
+    name: 'Project Deadline Management',
+    data: {
+      action_points: [
+        { task: 'Break down project into smaller milestones', priority: 'high' },
+        { task: 'Set up automated progress tracking', priority: 'medium' },
+        { task: 'Plan buffer time for unexpected issues', priority: 'low' }
+      ],
+      consider_points: [
+        { note: 'Consider stakeholder expectations and communication', category: 'communication' },
+        { note: 'Risk of scope creep during implementation', category: 'risk' }
+      ]
+    },
+    timestamp: new Date('2024-05-30'),
+    completedActions: 2,
+    totalActions: 3,
+    reflections: 2,
+    totalConsiderations: 2
+  },
+  {
+    id: '3',
+    name: 'Client Relationship Building',
+    data: {
+      action_points: [
+        { task: 'Schedule monthly check-in calls', priority: 'high' },
+        { task: 'Create client satisfaction survey', priority: 'medium' }
+      ],
+      consider_points: [
+        { note: 'Consider cultural differences in communication styles', category: 'people' },
+        { note: 'Opportunity to upsell additional services', category: 'opportunity' }
+      ]
+    },
+    timestamp: new Date('2024-06-01'),
+    completedActions: 1,
+    totalActions: 2,
+    reflections: 1,
+    totalConsiderations: 2
+  }
+];
+
 const Index = () => {
-  const [currentView, setCurrentView] = useState<'chat' | 'dashboard'>('chat');
+  const [currentView, setCurrentView] = useState<'chat' | 'dashboard' | 'analysis'>('chat');
   const [chatSessions, setChatSessions] = useState<ChatSession[]>([]);
   const [currentSession, setCurrentSession] = useState<ChatSession | null>(null);
+  const [completedMissions, setCompletedMissions] = useState<Mission[]>(mockMissions);
   const [isLoading, setIsLoading] = useState(false);
 
   const generateSessionName = (prompt: string): string => {
@@ -62,12 +137,44 @@ const Index = () => {
     setCurrentSession(null);
   };
 
+  const handleFinishMission = (completedActions: number, totalActions: number, reflections: number, totalConsiderations: number) => {
+    if (currentSession) {
+      const newMission: Mission = {
+        id: currentSession.id,
+        name: currentSession.name,
+        data: currentSession.data,
+        timestamp: currentSession.timestamp,
+        completedActions,
+        totalActions,
+        reflections,
+        totalConsiderations
+      };
+      
+      setCompletedMissions(prev => [newMission, ...prev]);
+      setCurrentView('analysis');
+    }
+  };
+
+  const handleViewAnalysis = () => {
+    setCurrentView('analysis');
+  };
+
+  if (currentView === 'analysis') {
+    return (
+      <AnalysisView 
+        missions={completedMissions}
+        onBack={handleBackToChat}
+      />
+    );
+  }
+
   if (currentView === 'dashboard' && currentSession) {
     return (
       <Dashboard 
         data={currentSession.data}
         sessionName={currentSession.name}
         onBack={handleBackToChat}
+        onFinishMission={handleFinishMission}
       />
     );
   }
@@ -115,6 +222,20 @@ const Index = () => {
           </p>
         </div>
       </div>
+
+      {/* Analysis Button */}
+      {completedMissions.length > 0 && (
+        <div className="fixed top-6 right-6 z-20">
+          <Button
+            onClick={handleViewAnalysis}
+            className="bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-all duration-200 hover:scale-105"
+            style={{ fontFamily: 'Helvetica Neue, sans-serif' }}
+          >
+            <BarChart3 className="w-4 h-4 mr-2" />
+            View Analysis
+          </Button>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="relative z-10 px-6 pb-32">

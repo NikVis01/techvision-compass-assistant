@@ -1,6 +1,6 @@
 
 import { useState, useMemo } from 'react';
-import { ArrowLeft, Clock, CheckCircle2, Lightbulb } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle2, Lightbulb, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StructuredResponse, ActionPoint, ConsiderPoint } from '@/types/api';
 import ActionCard from '@/components/ActionCard';
@@ -10,9 +10,10 @@ interface DashboardProps {
   data: StructuredResponse;
   sessionName: string;
   onBack: () => void;
+  onFinishMission: (completedActions: number, totalActions: number, reflections: number, totalConsiderations: number) => void;
 }
 
-const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
+const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProps) => {
   const [actionPoints, setActionPoints] = useState<ActionPoint[]>(data.action_points || []);
   const [considerationPoints, setConsiderationPoints] = useState<ConsiderPoint[]>(data.consider_points || []);
   const [completedActions, setCompletedActions] = useState<boolean[]>(new Array(actionPoints.length).fill(false));
@@ -62,6 +63,10 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
     });
   };
 
+  const handleFinishMission = () => {
+    onFinishMission(completedCount, totalActions, reflectedCount, totalConsiderations);
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
       background: 'radial-gradient(circle at center, rgba(251, 146, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
@@ -102,9 +107,20 @@ const Dashboard = ({ data, sessionName, onBack }: DashboardProps) => {
               </div>
             </div>
             
-            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-              <Clock className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Just now</span>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                <Clock className="w-4 h-4 text-orange-400" />
+                <span className="text-sm font-medium text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Just now</span>
+              </div>
+              
+              <Button
+                onClick={handleFinishMission}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold px-6 py-2 transition-all duration-200 hover:scale-105"
+                style={{ fontFamily: 'Helvetica Neue, sans-serif' }}
+              >
+                <Trophy className="w-4 h-4 mr-2" />
+                Finish Mission
+              </Button>
             </div>
           </div>
         </div>
