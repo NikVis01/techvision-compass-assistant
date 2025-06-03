@@ -103,7 +103,7 @@ const Index = () => {
   const handlePromptSubmit = async (prompt: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://34.51.175.185:8000/structured-chat', {
+      const response = await fetch('https://34.51.175.185:8000/structured-chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
