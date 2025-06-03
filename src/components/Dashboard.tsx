@@ -1,10 +1,9 @@
 
 import { useState, useMemo } from 'react';
-import { ArrowLeft, Clock, CheckCircle2, Lightbulb, Trophy } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle2, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { StructuredResponse, ActionPoint, ConsiderPoint } from '@/types/api';
+import { StructuredResponse, ActionPoint } from '@/types/api';
 import ActionCard from '@/components/ActionCard';
-import ConsiderationCard from '@/components/ConsiderationCard';
 
 interface DashboardProps {
   data: StructuredResponse;
@@ -15,9 +14,7 @@ interface DashboardProps {
 
 const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProps) => {
   const [actionPoints, setActionPoints] = useState<ActionPoint[]>(data.action_points || []);
-  const [considerationPoints, setConsiderationPoints] = useState<ConsiderPoint[]>(data.consider_points || []);
   const [completedActions, setCompletedActions] = useState<boolean[]>(new Array(actionPoints.length).fill(false));
-  const [reflections, setReflections] = useState<string[]>(new Array(considerationPoints.length).fill(''));
 
   // Sort actions: incomplete first, completed at bottom
   const sortedActionIndices = useMemo(() => {
@@ -30,8 +27,7 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProp
 
   const totalActions = actionPoints.length;
   const completedCount = completedActions.filter(Boolean).length;
-  const totalConsiderations = considerationPoints.length;
-  const reflectedCount = reflections.filter(r => r.length > 0).length;
+  const totalConsiderations = data.consider_points?.length || 0;
 
   const handleToggleComplete = (index: number) => {
     setCompletedActions(prev => {
@@ -52,19 +48,10 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProp
   const handleRepromptAction = (index: number) => {
     // In a real app, this would call the API to regenerate the action
     console.log(`Reprompting action at index ${index}`);
-    // For now, we'll just log it
-  };
-
-  const handleReflectionSave = (index: number, reflection: string) => {
-    setReflections(prev => {
-      const newReflections = [...prev];
-      newReflections[index] = reflection;
-      return newReflections;
-    });
   };
 
   const handleFinishMission = () => {
-    onFinishMission(completedCount, totalActions, reflectedCount, totalConsiderations);
+    onFinishMission(completedCount, totalActions, 0, totalConsiderations);
   };
 
   return (
@@ -126,64 +113,45 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProp
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
         {/* Enhanced Summary Stats */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-2xl p-6 border-0 shadow-2xl hover:scale-105 transition-all duration-300">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Action Points</p>
-                <p className="text-4xl font-black text-black mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalActions}</p>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-orange-400 to-pink-400 transition-all duration-500"
-                      style={{ width: `${totalActions > 0 ? (completedCount / totalActions) * 100 : 0}%` }}
-                    />
-                  </div>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
-                    {completedCount}/{totalActions} completed
-                  </span>
+        <div className="bg-white rounded-2xl p-6 border-0 shadow-2xl hover:scale-105 transition-all duration-300 mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-600 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Action Points</p>
+              <p className="text-4xl font-black text-black mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalActions}</p>
+              <div className="flex items-center space-x-2">
+                <div className="w-32 h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-orange-400 to-pink-400 transition-all duration-500"
+                    style={{ width: `${totalActions > 0 ? (completedCount / totalActions) * 100 : 0}%` }}
+                  />
                 </div>
+                <span className="text-sm text-gray-600" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
+                  {completedCount}/{totalActions} completed
+                </span>
               </div>
-              <CheckCircle2 className="w-12 h-12 text-orange-400" />
             </div>
-          </div>
-          
-          <div className="bg-white rounded-2xl p-6 border-0 shadow-2xl hover:scale-105 transition-all duration-300">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600 mb-1 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Considerations</p>
-                <p className="text-4xl font-black text-black mb-2" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>{totalConsiderations}</p>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-gradient-to-r from-emerald-400 to-teal-400 transition-all duration-500"
-                      style={{ width: `${totalConsiderations > 0 ? (reflectedCount / totalConsiderations) * 100 : 0}%` }}
-                    />
-                  </div>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
-                    {reflectedCount}/{totalConsiderations} reflected
-                  </span>
-                </div>
-              </div>
-              <Lightbulb className="w-12 h-12 text-pink-400" />
-            </div>
+            <CheckCircle2 className="w-16 h-16 text-orange-400" />
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Action Points Column */}
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg flex items-center justify-center">
-                <CheckCircle2 className="w-5 h-5 text-white" />
-              </div>
-              <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>ACTION POINTS</h2>
+        {/* Action Points */}
+        <div>
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <CheckCircle2 className="w-5 h-5 text-white" />
             </div>
-            
-            <div className="space-y-4">
-              {sortedActionIndices.map((originalIndex) => (
+            <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>ACTION POINTS</h2>
+          </div>
+          
+          <div className="space-y-6">
+            {sortedActionIndices.map((originalIndex) => {
+              // Pair each action with a consideration as mindfulness tip
+              const considerationIndex = originalIndex % (data.consider_points?.length || 1);
+              const mindfulnessTip = data.consider_points?.[considerationIndex]?.note;
+              
+              return (
                 <ActionCard 
                   key={originalIndex} 
                   action={actionPoints[originalIndex]} 
@@ -192,38 +160,14 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProp
                   onToggleComplete={handleToggleComplete}
                   onEdit={handleEditAction}
                   onReprompt={handleRepromptAction}
+                  mindfulnessTip={mindfulnessTip}
                 />
-              )) || (
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
-                  <p className="text-white/70 text-center" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>No action points generated</p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Considerations Column */}
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-orange-500 rounded-lg flex items-center justify-center">
-                <Lightbulb className="w-5 h-5 text-white" />
+              );
+            }) || (
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                <p className="text-white/70 text-center" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>No action points generated</p>
               </div>
-              <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>MINDFUL CONSIDERATIONS</h2>
-            </div>
-            
-            <div className="space-y-4">
-              {considerationPoints.map((consideration, index) => (
-                <ConsiderationCard 
-                  key={index} 
-                  consideration={consideration} 
-                  index={index}
-                  onReflectionSave={handleReflectionSave}
-                />
-              )) || (
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
-                  <p className="text-white/70 text-center" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>No considerations generated</p>
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
