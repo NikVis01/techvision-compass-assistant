@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
-import { Sparkles, BarChart3, Zap } from 'lucide-react';
+import { Sparkles, BarChart3, Zap, Building } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
 import AnalysisView from '@/components/AnalysisView';
+import CompanyDatabase from '@/components/CompanyDatabase';
 import { StructuredResponse } from '@/types/api';
 
 interface ChatSession {
