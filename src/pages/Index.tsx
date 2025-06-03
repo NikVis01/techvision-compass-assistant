@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
@@ -95,6 +94,7 @@ const Index = () => {
   const [currentSession, setCurrentSession] = useState<ChatSession | null>(null);
   const [completedMissions, setCompletedMissions] = useState<Mission[]>(mockMissions);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastPrompt, setLastPrompt] = useState<string>('');
 
   const generateSessionName = (prompt: string): string => {
     const words = prompt.split(' ').slice(0, 3);
@@ -102,6 +102,7 @@ const Index = () => {
   };
 
   const handlePromptSubmit = async (prompt: string) => {
+    setLastPrompt(prompt);
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:8000/structured-chat', {
@@ -190,6 +191,7 @@ const Index = () => {
         sessionName={currentSession.name}
         onBack={handleBackToChat}
         onFinishMission={handleFinishMission}
+        initialPrompt={lastPrompt}
       />
     );
   }

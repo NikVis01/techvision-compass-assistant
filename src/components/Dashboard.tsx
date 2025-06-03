@@ -1,18 +1,19 @@
-
 import { useState, useMemo } from 'react';
 import { ArrowLeft, Clock, CheckCircle2, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { StructuredResponse, ActionPoint } from '@/types/api';
 import ActionCard from '@/components/ActionCard';
+import ChatbotPopup from '@/components/ChatbotPopup';
 
 interface DashboardProps {
   data: StructuredResponse;
   sessionName: string;
   onBack: () => void;
   onFinishMission: (completedActions: number, totalActions: number, reflections: number, totalConsiderations: number) => void;
+  initialPrompt?: string;
 }
 
-const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProps) => {
+const Dashboard = ({ data, sessionName, onBack, onFinishMission, initialPrompt }: DashboardProps) => {
   const [actionPoints, setActionPoints] = useState<ActionPoint[]>(data.action_points || []);
   const [completedActions, setCompletedActions] = useState<boolean[]>(new Array(actionPoints.length).fill(false));
 
@@ -171,6 +172,9 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission }: DashboardProp
           </div>
         </div>
       </div>
+
+      {/* Chatbot Popup */}
+      <ChatbotPopup initialPrompt={initialPrompt} />
     </div>
   );
 };
