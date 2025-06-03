@@ -63,7 +63,7 @@ const ChatbotPopup = ({ initialPrompt }: ChatbotPopupProps) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://34.68.156.74:8000/chat', {
+      const response = await fetch('http://localhost:8000/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
