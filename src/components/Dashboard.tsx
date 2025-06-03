@@ -57,16 +57,16 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission, initialPrompt }
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
-      background: 'radial-gradient(circle at center, rgba(251, 146, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
+      background: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.2) 0%, rgba(0, 0, 0, 0.9) 40%), linear-gradient(135deg, #000000 0%, #3b82f6 50%, #06b6d4 100%)'
     }}>
-      {/* Subtle light green glow overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/5 via-transparent to-green-300/5 pointer-events-none"></div>
+      {/* Subtle light blue glow overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-cyan-300/5 pointer-events-none"></div>
       
       {/* Dynamic floating elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-16 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-3 h-3 bg-emerald-400/30 rounded-full animate-bounce"></div>
-        <div className="absolute top-60 left-1/4 w-1 h-1 bg-green-400/20 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute top-40 right-20 w-3 h-3 bg-blue-400/30 rounded-full animate-bounce"></div>
+        <div className="absolute top-60 left-1/4 w-1 h-1 bg-cyan-400/20 rounded-full animate-pulse delay-1000"></div>
         <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-white/40 rounded-full animate-bounce delay-500"></div>
       </div>
 
@@ -97,7 +97,7 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission, initialPrompt }
             
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                <Clock className="w-4 h-4 text-orange-400" />
+                <Clock className="w-4 h-4 text-blue-400" />
                 <span className="text-sm font-medium text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>Just now</span>
               </div>
               
@@ -124,7 +124,7 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission, initialPrompt }
               <div className="flex items-center space-x-2">
                 <div className="w-32 h-3 bg-gray-200 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-orange-400 to-pink-400 transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 transition-all duration-500"
                     style={{ width: `${totalActions > 0 ? (completedCount / totalActions) * 100 : 0}%` }}
                   />
                 </div>
@@ -133,14 +133,14 @@ const Dashboard = ({ data, sessionName, onBack, onFinishMission, initialPrompt }
                 </span>
               </div>
             </div>
-            <CheckCircle2 className="w-16 h-16 text-orange-400" />
+            <CheckCircle2 className="w-16 h-16 text-blue-400" />
           </div>
         </div>
 
         {/* Action Points */}
         <div>
           <div className="flex items-center space-x-3 mb-6">
-            <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
               <CheckCircle2 className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>ACTION POINTS</h2>

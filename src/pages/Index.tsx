@@ -198,7 +198,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{
-      background: 'radial-gradient(circle at center bottom, rgba(251, 146, 60, 0.3) 0%, rgba(0, 0, 0, 0.8) 40%), linear-gradient(135deg, #000000 0%, #f97316 50%, #ec4899 100%)'
+      background: 'radial-gradient(circle at center bottom, rgba(59, 130, 246, 0.3) 0%, rgba(0, 0, 0, 0.8) 40%), linear-gradient(135deg, #000000 0%, #3b82f6 50%, #06b6d4 100%)'
     }}>
       <FloatingElements />
 

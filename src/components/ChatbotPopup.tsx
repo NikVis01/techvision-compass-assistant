@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -112,7 +111,7 @@ const ChatbotPopup = ({ initialPrompt }: ChatbotPopupProps) => {
         <div className="fixed bottom-8 left-8 z-50">
           <Button
             onClick={() => setIsOpen(true)}
-            className="w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 shadow-2xl transition-all duration-200 hover:scale-110"
+            className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-2xl transition-all duration-200 hover:scale-110"
           >
             <MessageCircle className="w-8 h-8 text-white" />
           </Button>
@@ -123,7 +122,7 @@ const ChatbotPopup = ({ initialPrompt }: ChatbotPopupProps) => {
       {isOpen && (
         <div className="fixed bottom-8 left-8 z-50 w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col border border-gray-200">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-orange-500 to-pink-500 rounded-t-2xl">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-t-2xl">
             <h3 className="text-white font-bold" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
               AI Assistant
             </h3>
@@ -147,7 +146,7 @@ const ChatbotPopup = ({ initialPrompt }: ChatbotPopupProps) => {
                 <div
                   className={`max-w-[80%] p-3 rounded-lg ${
                     message.isUser
-                      ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white'
+                      ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
                       : 'bg-gray-100 text-gray-800'
                   }`}
                   style={{ fontFamily: 'Helvetica Neue, sans-serif' }}
@@ -178,14 +177,14 @@ const ChatbotPopup = ({ initialPrompt }: ChatbotPopupProps) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm"
+                className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-sm"
                 style={{ fontFamily: 'Helvetica Neue, sans-serif' }}
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white"
               >
                 <Send className="w-4 h-4" />
               </Button>
