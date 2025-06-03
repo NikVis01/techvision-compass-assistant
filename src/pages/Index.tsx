@@ -105,7 +105,7 @@ const Index = () => {
     setLastPrompt(prompt);
     setIsLoading(true);
     try {
-      const response = await fetch('https://34.68.156.74:8000/structured-chat', {
+      const response = await fetch('http://34.68.156.74:8000/structured-chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
