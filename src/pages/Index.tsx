@@ -1,13 +1,12 @@
 
 import { useState } from 'react';
-import { Sparkles, BarChart3, Zap, Building } from 'lucide-react';
+import { Sparkles, BarChart3, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
 import AnalysisView from '@/components/AnalysisView';
-import CompanyDatabase from '@/components/CompanyDatabase';
 import { StructuredResponse } from '@/types/api';
 
 interface ChatSession {
@@ -104,7 +103,7 @@ const Index = () => {
   const handlePromptSubmit = async (prompt: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://34.51.175.185:8000/structured-chat', {
+      const response = await fetch('http://localhost:8000/structured-chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -217,11 +216,11 @@ const Index = () => {
               className="w-16 h-16 brightness-0 invert" 
             />
             <h1 className="text-6xl font-light text-white tracking-tight" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
-              <span className="font-black text-7xl">interactive</span>
+              <span className="font-black text-7xl">INTERACTIF</span>
             </h1>
           </div>
           <p className="text-xl text-white/70 font-light" style={{ fontFamily: 'Helvetica Neue, sans-serif' }}>
-            Learning embedded in daily workflows
+            Internal guidance companion
           </p>
         </div>
       </div>
